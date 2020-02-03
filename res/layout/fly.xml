@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/Server"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/Blank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/Tex"
+        android:layout_width="match_parent"
+        android:text="使用浏览器访问服务地址传书"
+        android:textAppearance="?android:attr/textAppearanceLarge" 
+        android:textSize="16sp"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/Tit"
+        android:layout_width="match_parent"
+        android:text="本机正在播放的网址:"
+        android:textAppearance="?android:attr/textAppearanceLarge" 
+        android:textSize="16sp"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:inputType="textMultiLine">
+
+        <requestFocus />
+    </EditText>
+
+</LinearLayout>

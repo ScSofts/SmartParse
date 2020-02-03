@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="me.Sc.vipjiexi.MainActivity" >
+
+    <item
+        android:id="@+id/Like"
+        android:orderInCategory="100"
+        android:title="收藏"
+        android:menuCategory="secondary"/>
+    <item android:id="@+id/open" 
+        android:orderInCategory="200"
+        android:title="打开收藏夹" 
+        android:menuCategory="secondary"
+        ></item>
+    <item android:id="@+id/Mouse" 
+        android:menuCategory="secondary" 
+        android:title="打开鼠标" 
+        android:orderInCategory="300"
+        ></item>
+    <item android:id="@+id/Fly" 
+        android:menuCategory="secondary" 
+        android:title="飞鸽传书" 
+        android:orderInCategory="300"
+        ></item>
+
+</menu>

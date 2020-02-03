@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListView
+        android:id="@+id/Favourites"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:focusable="true">
+    </ListView>
+
+    <me.Sc.jiexi.MouseView
+        android:id="@+id/mouse_view_Fav"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:visibility="invisible"  >
+    </me.Sc.jiexi.MouseView>
+
+</LinearLayout>

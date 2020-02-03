@@ -1,0 +1,25 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.example.tvmouseview.MainActivity">
+
+    <com.tencent.smtt.sdk.WebView
+        android:id="@+id/web"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="false"
+        android:focusableInTouchMode="false" >
+
+    </com.tencent.smtt.sdk.WebView>
+
+        <me.Sc.jiexi.MouseView
+            android:id="@+id/mouse_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="invisible" >
+
+        </me.Sc.jiexi.MouseView>
+</FrameLayout>
