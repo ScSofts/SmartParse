@@ -34,23 +34,9 @@ public class MouseView extends FrameLayout {
 
     //鼠标移动距离  px
     private int mMoveDis = 15;
-    /**
-     * mHandler
-     */
-    private Handler mHandler = new Handler();
-    /**
-     * 隐藏鼠标线程
-     */
-    private Runnable hideRunnable = new Runnable() {
-        @Override
-        public void run() {
-            mMouseView.setVisibility(GONE);
-        }
-    };
 
-
-    public MouseView(@NonNull Context context) {
-        super(context, null);
+    public MouseView(@NonNull Context context){
+        super(context,null);
         init();
     }
 
@@ -59,11 +45,12 @@ public class MouseView extends FrameLayout {
         init();
     }
 
+
     /**
      * 初始化鼠标
      */
     private void init() {
-        Drawable drawable = getResources().getDrawable(
+        Drawable drawable =	getResources().getDrawable(
                 R.drawable.shubiao);
         mMouseBitmap = drawableToBitamp(drawable);
         mMouseView = new ImageView(getContext());
@@ -80,23 +67,25 @@ public class MouseView extends FrameLayout {
 
     /**
      * 生成一个鼠标图片
-     *
      * @param drawable
      * @return
      */
     private Bitmap drawableToBitamp(Drawable drawable) {
         BitmapDrawable bd = (BitmapDrawable) drawable;
         Bitmap bitmap = bd.getBitmap();
-        return Bitmap.createScaledBitmap(bitmap, 96*2/3, 96*2/3, true);
+        return Bitmap.createScaledBitmap(bitmap, 96,96,true);
     }
+
+
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        if (mMouseView != null) {
-            mMouseView.layout(mMouseX, mMouseY, mMouseX + mMouseView.getMeasuredWidth(), mMouseY + mMouseView.getMeasuredHeight());
+        if(mMouseView != null){
+            mMouseView.layout(mMouseX,mMouseY,mMouseX + mMouseView.getMeasuredWidth(), mMouseY + mMouseView.getMeasuredHeight());
         }
     }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -107,82 +96,97 @@ public class MouseView extends FrameLayout {
         }
     }
 
+
+    /**
+     * mHandler
+     */
+    private Handler mHandler = new Handler();
+
+    /**
+     * 隐藏鼠标线程
+     */
+    private Runnable hideRunnable = new Runnable() {
+        @Override
+        public void run() {
+            mMouseView.setVisibility(GONE);
+        }
+    };
+
     /**
      * 设置鼠标显示，不移动鼠标10秒后隐藏
      */
-    private void setMouseShow() {
+    private void setMouseShow(){
         mMouseView.setVisibility(VISIBLE);
         mHandler.removeCallbacks(hideRunnable);
-        mHandler.postDelayed(hideRunnable, 10000);
+        mHandler.postDelayed(hideRunnable,10000);
     }
 
     /**
      * 按键监听
-     * <p>
-     * 模拟鼠标点击要 发送 ACTION_DOWN ACTION_UP 两个事件才会生效
      *
+     * 模拟鼠标点击要 发送 ACTION_DOWN ACTION_UP 两个事件才会生效
      * @param webView
      * @param event
      */
     @SuppressWarnings("deprecation")
-    public void moveMouse(com.tencent.smtt.sdk.WebView webView, KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+	public void moveMouse(com.tencent.smtt.sdk.WebView webView,KeyEvent event) {
+        if(event.getAction() == KeyEvent.ACTION_DOWN) {
             setMouseShow();
             switch (event.getKeyCode()) {
                 case KeyEvent.KEYCODE_DPAD_LEFT:
-                    if (mMouseX - mMoveDis >= 0) {
+                    if(mMouseX - mMoveDis >= 0) {
                         mMouseX -= mMoveDis;
-                    } else {
+                    }else{
                         mMouseX = 0;
                     }
-                    sendMotionEvent(webView, mMouseX, mMouseY, MotionEvent.ACTION_HOVER_MOVE);
+                    sendMotionEvent(webView,mMouseX , mMouseY,MotionEvent.ACTION_HOVER_MOVE);
                     requestLayout();
                     break;
 
                 case KeyEvent.KEYCODE_DPAD_RIGHT:
-                    if (mMouseX + mMoveDis + mOffsetX <= getMeasuredWidth()) {
+                    if(mMouseX + mMoveDis + mOffsetX <=getMeasuredWidth()){
                         mMouseX += mMoveDis;
-                    } else {
+                    }else{
                         mMouseX = getMeasuredWidth() - mOffsetX;
                     }
-                    sendMotionEvent(webView, mMouseX, mMouseY, MotionEvent.ACTION_HOVER_MOVE);
+                    sendMotionEvent(webView,mMouseX , mMouseY,MotionEvent.ACTION_HOVER_MOVE);
                     requestLayout();
                     break;
                 case KeyEvent.KEYCODE_DPAD_UP:
-                    if (mMouseY - mMoveDis >= -10) {
+                    if(mMouseY - mMoveDis >= -10) {
                         mMouseY -= mMoveDis;
-                    } else {
+                    }else {
                         mMouseY = 0;
-                        if (webView.getScrollY() - mMoveDis >= 0) {
+                        if(webView.getScrollY() - mMoveDis >= 0) {
                             webView.scrollBy(0, -mMoveDis);
                         }
                     }
-                    sendMotionEvent(webView, mMouseX, mMouseY, MotionEvent.ACTION_HOVER_MOVE);
+                    sendMotionEvent(webView,mMouseX , mMouseY,MotionEvent.ACTION_HOVER_MOVE);
                     requestLayout();
                     break;
                 case KeyEvent.KEYCODE_DPAD_DOWN:
-                    if (mMouseY + mMoveDis + mOffsetY <= getMeasuredHeight()) {
+                    if(mMouseY + mMoveDis + mOffsetY <=getMeasuredHeight()){
                         mMouseY += mMoveDis;
-                    } else {
+                    }else{
                         mMouseY = getMeasuredHeight() - mOffsetY;
-                        if ((webView.getContentHeight() * webView.getScale() - webView.getHeight()) - webView.getScrollY() >= -10) {
+                        if((webView.getContentHeight()*webView.getScale() - webView.getHeight()) - webView.getScrollY() >= -10) {
                             webView.scrollBy(0, mMoveDis);
                         }
                     }
-                    sendMotionEvent(webView, mMouseX, mMouseY, MotionEvent.ACTION_HOVER_MOVE);
+                    sendMotionEvent(webView,mMouseX , mMouseY,MotionEvent.ACTION_HOVER_MOVE);
                     requestLayout();
                     break;
 
                 case KeyEvent.KEYCODE_ENTER:
                 case KeyEvent.KEYCODE_DPAD_CENTER:
-                    sendMotionEvent(webView, mMouseX + 5, mMouseY + 5, event.getAction());
+                    sendMotionEvent(webView,mMouseX+5, mMouseY+5,event.getAction());
                     break;
 
                 case KeyEvent.KEYCODE_BACK:
-                    if (webView.canGoBack()) {
+                    if(webView.canGoBack()) {
                         webView.goBack();
-                    } else {
-                        System.exit(0);
+                    }else{
+                    	System.exit(0);
                     }
                     break;
 
@@ -190,32 +194,33 @@ public class MouseView extends FrameLayout {
                     return;
             }
         }
-        if (event.getAction() == KeyEvent.ACTION_UP) {
-            if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER ||
-                    event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER) {
-                sendMotionEvent(webView, mMouseX + 5, mMouseY + 5, event.getAction());
+        if(event.getAction() == KeyEvent.ACTION_UP){
+            if(event.getKeyCode() == KeyEvent.KEYCODE_ENTER ||
+                    event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER){
+                sendMotionEvent(webView,mMouseX+5, mMouseY+5,event.getAction());
             }
         }
     }
 
     /**
      * 发送一个模拟按键事件
-     *
      * @param webView
      * @param x
      * @param y
      * @param action
      */
-    private void sendMotionEvent(com.tencent.smtt.sdk.WebView webView, int x, int y, int action) {
-        MotionEvent motionEvent = MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), action, x, y, 0);
-        if (action == MotionEvent.ACTION_HOVER_MOVE) {
+    private void sendMotionEvent(com.tencent.smtt.sdk.WebView webView,int x, int y, int action){
+        MotionEvent motionEvent = MotionEvent.obtain(SystemClock.uptimeMillis(),SystemClock.uptimeMillis(), action, x, y, 0);
+        if(action == MotionEvent.ACTION_HOVER_MOVE) {
             motionEvent.setSource(InputDevice.SOURCE_CLASS_POINTER);
             webView.dispatchGenericMotionEvent(motionEvent);
-        } else {
+        }else {
             webView.dispatchTouchEvent(motionEvent);
         }
         motionEvent.recycle();
     }
+
+
 
 
 }

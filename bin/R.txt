@@ -240,7 +240,6 @@ int drawable shubiao 0x7f020059
 int drawable star 0x7f02005a
 int id Blank 0x7f050042
 int id Favourites 0x7f05003f
-int id Fly 0x7f05004e
 int id Front 0x7f050049
 int id Like 0x7f05004b
 int id Mouse 0x7f05004d

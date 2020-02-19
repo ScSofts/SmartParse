@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.Sc.jiexi"
-    android:versionCode="6"
-    android:versionName="6.1" android:installLocation="auto">
+    android:versionCode="5"
+    android:versionName="5.0" android:installLocation="auto">
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -21,8 +21,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:hardwareAccelerated="true" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,10 +29,9 @@
             </intent-filter>
         </activity>
         <service android:label="dexopt" android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService" android:process=":dexopt"/>
-        <service android:name="PreLoadX5Service"></service><activity android:label="收藏夹" android:name="Favourite" android:launchMode="standard" android:icon="@drawable/ic_launcher" android:logo="@drawable/ic_launcher"></activity>
+        <activity android:label="收藏夹" android:name="Favourite" android:launchMode="standard" android:icon="@drawable/ic_launcher" android:logo="@drawable/ic_launcher"></activity>
         <activity android:name="TvMenu" android:label="TV菜单"></activity>
         <activity android:name="Fly" android:label="飞鸽传书"></activity>
-        
     </application>
 
 </manifest>

@@ -1085,7 +1085,6 @@ containing a value of this type.
     public static final class id {
         public static final int Blank=0x7f050042;
         public static final int Favourites=0x7f05003f;
-        public static final int Fly=0x7f05004e;
         public static final int Front=0x7f050049;
         public static final int Like=0x7f05004b;
         public static final int Mouse=0x7f05004d;
