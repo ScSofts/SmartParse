@@ -12,6 +12,15 @@
         android:title="打开收藏夹" 
         android:menuCategory="secondary"
         ></item>
-    <item android:id="@+id/Mouse" android:menuCategory="secondary" android:title="打开鼠标" android:orderInCategory="300"></item>
+    <item android:id="@+id/Mouse" 
+        android:menuCategory="secondary" 
+        android:title="打开鼠标" 
+        android:orderInCategory="300"
+        ></item>
+    <item android:id="@+id/Fly" 
+        android:menuCategory="secondary" 
+        android:title="飞鸽传书" 
+        android:orderInCategory="300"
+        ></item>
 
 </menu>

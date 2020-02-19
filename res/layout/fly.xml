@@ -36,8 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" 
-        android:inputType="none"
-        android:editable="false">
+        android:inputType="textMultiLine">
 
         <requestFocus />
     </EditText>
