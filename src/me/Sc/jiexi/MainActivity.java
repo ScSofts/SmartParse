@@ -44,6 +44,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
+        QbSdk.setDownloadWithoutWifi(true);
         QbSdk.initTbsSettings(map);
         // Æô¶¯·þÎñ
         Intent intent = new Intent(this, PreLoadX5Service.class);
